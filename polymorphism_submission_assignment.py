@@ -22,8 +22,8 @@ class Person:
         self.lastname = lname
         
     # class method; prints first and last name of a Person instance
-    def printname(self):
-        print(self.firstname, self.lastname)
+    def greeting(self):
+        print('Hello, {} {}. Hope you are having a good day.'.format(self.firstname, self.lastname))
 
 
 # child class of Person class
@@ -38,9 +38,8 @@ class Student(Person):
         self.age = age
         self.graduationyear = year
 
-    # Could have referenced parent class' printname()
-    # but welcome describes it better
-    def welcome(self):
+    # utilize polymorphism on the parent class method: greeting()
+    def greeting(self):
         # prints welcome message using most attr values for this instance of Student
         print('Welcome', self.firstname, self.lastname, "to the class of", self.graduationyear)
 
@@ -59,8 +58,8 @@ class Teacher(Person):
         self.classname = classname
         self.gradelevel = gradelevel
         
-    # class method that prints teacher object property values
-    def teacherIntro(self):
+    # utilize polymorphism on the parent class method: greeting()
+    def greeting(self):
         # outputs message with Teacher instances' own attr values
         print('Hello class and welcome, to the {}th grade {} class!\nMy name is {} {}.'
               .format(self.gradelevel, self.classname, self.firstname, self.lastname))
@@ -73,26 +72,22 @@ if __name__ == '__main__':
     # Instantiating a Person object type and passing required arguments
     # Parent class; referencing the __init__ class method/constructor
     john = Person('John', "Smith")
-    # call to class method; print first and last names of this instance of type Person
-    john.printname()
+    # welcome message: print first and last names of this instance of type Person
+    john.greeting()
 
     # Instantiating a Student object type and passing required arguments
     # child class to Person class type
     benny = Student('Benny', 'McCoy', 15, 2019) 
-    # call to parent class' method
-    # prints firstname and lastname of Student is-a Person
-    benny.printname()
-    # calls Student class method to print a student welcome message 
-    benny.welcome()
+    # prints welcome message with the firstname and lastname of Student is-a Person 
+    benny.greeting()
+
 
     # Instantiating a Teacher object type and passing required arguments
     teacher1 = Teacher('Benjamin', 'Morgan', 'Trigonometry', '10')
     # call to parent class' method
-    # prints firstname and lastname of Teacher is-a Person
-    teacher1.printname()
-    # calls Teacher class method to print a welcome message
-    # and printing/output this instance of Teacher attribute values
-    teacher1.teacherIntro()
+     # prints welcome message with the firstname and lastname of Teacher is-a Person
+    teacher1.greeting()
+
 
 
 
